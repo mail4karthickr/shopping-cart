@@ -44,8 +44,8 @@ export const Title = styled.div`
 `;
 
 export const CategoryTileContainer = styled(Link)`
-    min-width: 200px;
-    min-height: 150px;
+    min-width: 300px;
+    min-height: 200px;
     cursor: pointer;
     position: relative;
 

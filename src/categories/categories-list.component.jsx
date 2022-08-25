@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getCategories } from './categories.slice';
 import CategoryTile from './category-tile.component'
+import React from "react";
+import PageSpinner from "../common/components/page-spinner.component";
 
 const CategoriesList = () => {
     const dispatch = useDispatch();
@@ -12,21 +14,22 @@ const CategoriesList = () => {
         dispatch(getCategories());
     }, []);
 
-    if (isLoading) {
+    const Categories = () => {
+        return items.map((item) => {
+            return (<CategoryTile key={item} name={item} />);
+        })
+    }
+
+    const Loader = () => {
         return (
-            <div>
-                <h1>Loading...</h1>
-            </div>
-        )
+            <PageSpinner message="Please wait..." />
+        );
     }
 
     return (
         <Container>
-            {
-                items.map((item) => {
-                    return (<CategoryTile key={item} name={item} />);
-                })
-            }
+            <Categories />
+            {isLoading && <Loader />}
         </Container>
     );
 }

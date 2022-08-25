@@ -3,26 +3,26 @@ import styled from 'styled-components';
 export const ProductTileContainer = styled.div`
     display: flex;
     flex-direction: column;
-    width: 300px;
-    height: 400px;
-    background-color: cyan;
+    height: 450px;
+    background-color: #F5F5F5;
 `
-
 export const InfoContainer = styled.div`
-    padding: 10px;
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
+    padding: 10px;
+    gap: 3px;
+    height: 100%;
 `
-export const ProductImage = styled.div`
+export const ProductImage = styled.img`
     width: 100%;
-    height: 200px;
-    background-repeat:no-repeat;
-    background: ${({ imageUrl }) => `url(${imageUrl})`} center/cover;
+    height: 300px;
+    object-fit: cover;
+    object-position: top;
 `
 export const Title = styled.div`
     width: 100%;
 `
-
 export const Description = styled.div`
     display: -webkit-box;
     overflow: hidden;
@@ -34,6 +34,7 @@ export const Description = styled.div`
 
 export const Price = styled.span`
     font-weight: bold;
+    font-size: 1.1rem;
 `
 
 export const Rating = styled.div`
@@ -43,8 +44,12 @@ export const AddToCart = styled.button`
     outline: none;
     border: none;
     cursor: pointer;
+    height: 30px;
 
     &:hover {
-        opacity: 0.9;
+        font-weight: bold;
     }
+`
+export const ProductQuantityStepper = styled.div`
+    margin-top: auto;
 `

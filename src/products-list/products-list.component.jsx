@@ -3,16 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from './products-list.slice';
 import ProductTile from './product-tile.component';
 import { ProductsListContainer } from './products-list.styles';
+import React from 'react';
 
 const ProductsList = ({id}) => {
     const dispatch = useDispatch();
-    const { products, isProductsListLoading } = useSelector((store) => store.productsList);
+    const { products, isLoading } = useSelector((store) => store.productsList);
 
     useEffect(() => {
         dispatch(getProducts(id));
     }, []);
 
-    if (isProductsListLoading) {
+    if (isLoading) {
         return (
             <div>
                 <h1>Loading...</h1>
@@ -21,7 +22,8 @@ const ProductsList = ({id}) => {
     }
 
     return (
-        <ProductsListContainer> {
+        <ProductsListContainer> 
+            {
                 products.map((product) => {
                     return <ProductTile key={product.id} product={product} />
                 })

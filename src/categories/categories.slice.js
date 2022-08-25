@@ -27,7 +27,7 @@ const categoriesSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
-        [getCategories.pending]: (state) => {
+        [getCategories.pending]: (state, action) => {
             state.isLoading = true;
         },
         [getCategories.fulfilled]: (state, action) => {
@@ -35,9 +35,9 @@ const categoriesSlice = createSlice({
             state.items = action.payload;
         },
         [getCategories.rejected]: (state, action) => {
-            state.isLoading = false
+            state.isLoading = false;
             state.items = [];
-        }
+        },
     },
 });
 

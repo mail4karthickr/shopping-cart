@@ -3,6 +3,14 @@ import api from '../api/api';
 
 const url = 'https://fakestoreapi.com';
 
+const initialState = {
+    selectedCard: {},
+    selectedAddress: {},
+    cards: [],
+    addresses: [],
+    isLoading: false
+}
+
 export const getProducts = createAsyncThunk(
     '/category/products', 
     async (productName, thunkAPI) => {
@@ -16,28 +24,23 @@ export const getProducts = createAsyncThunk(
     }
 );
 
-const initialState = {
-    products: [],
-    isProductListLoading: false,
-}
-
-const productsSlice = createSlice({
-    name: 'productsList',
+const checkOutSlice = createSlice({
+    name: 'checkout',
     initialState,
     reducers: {},
     extraReducers: {
         [getProducts.pending]: (state) => {
-            state.isProductListLoading = true;
+            state.isLoading = true;
         },
         [getProducts.fulfilled]: (state, action) => {
-            state.isProductListLoading = false;
+            state.isLoading = false;
             state.products = action.payload;
         },
         [getProducts.rejected]: (state, action) => {
-            state.isProductListLoading = false
+            state.isLoading = false
             state.products = [];
         }
     },
 });
 
-export default productsSlice.reducer;
+export default checkOutSlice.reducer;
