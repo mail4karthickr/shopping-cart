@@ -1,22 +1,17 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import api from '../api/api';
+import api from '../../../api/api';
 
 const initialState = {
-    selectedCard: {},
     defaultAddress: {},
-    cards: [],
     addresses: [],
     isLoading: false
 }
-
-const url = 'https://fakestoreapi.com';
 
 export const getAddresses = createAsyncThunk(
     'user/addresses',
     async (productName, thunkAPI) => {
         try {
-            const fullUrl = url.concat(`/user/addresses`);
-            const resp = await api(fullUrl);
+            const resp = await api('/addresses');
             return resp.data;
         } catch(error) {
             return thunkAPI.rejectWithValue('something went wrong');
@@ -24,12 +19,16 @@ export const getAddresses = createAsyncThunk(
     }
 );
 
-const checkOutSlice = createSlice({
-    name: 'checkout',
+const addressesSlice = createSlice({
+    name: 'addresses',
     initialState,
     reducers: {
-        setDefaultAddress: (state, { payload }) => {
-            state.defaultAddress = payload.defaultAddress;
+        removeDefaultAddress: (state) => {
+            state.defaultAddress = {};
+        },
+        updateDefaultAddress: (state, action) => {
+            const address = action.payload.address;
+            state.defaultAddress = address;
         }
     },
     extraReducers: {
@@ -37,14 +36,17 @@ const checkOutSlice = createSlice({
             state.isLoading = true;
         },
         [getAddresses.fulfilled]: (state, action) => {
+            const addresses = action.payload;
+            state.addresses = addresses;
+            state.defaultAddress = addresses.find((address) => address.isDefault);
             state.isLoading = false;
-            state.addresses = action.payload;
         },
         [getAddresses.rejected]: (state, action) => {
-            state.isLoading = false
             state.addresses = []
+            state.isLoading = false
         }
     },
 });
 
-export default checkOutSlice.reducer;
+export default addressesSlice.reducer;
+export const { removeDefaultAddress, updateDefaultAddress }  = addressesSlice.actions;

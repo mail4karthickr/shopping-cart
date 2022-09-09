@@ -13,7 +13,5 @@ export const UserDetailsContainer = styled.div`
 `
 
 export const AddressContainer = styled.div`
-    height: 300px;
     width: 30%;
-    background-color: lightgreen;
 `

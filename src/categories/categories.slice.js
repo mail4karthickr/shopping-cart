@@ -1,15 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import api from '../api/api';
-
-const url = 'https://fakestoreapi.com';
+import axios from '../api/api';
 
 export const getCategories = createAsyncThunk(
     '/products/categories', 
     async (name, thunkAPI) => {
         try {
-            console.log('GetCategories', name);
-            const fullUrl = url.concat('/products/categories');
-            const resp = await api(fullUrl);
+            const resp = await axios.get('/products/categories');
+            console.log('GetCategories API response - ', resp.data);
             return resp.data;
         } catch(error) {
             return thunkAPI.rejectWithValue('something went wrong');

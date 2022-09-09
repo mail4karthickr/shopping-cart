@@ -6,7 +6,7 @@ const initialState = {
     amount: 0,
     count: 0,
     isCartOpen: false,
-    formattedAmount: ""
+    formattedAmount: "$0.00"
 }
 
 const cartSlice = createSlice({

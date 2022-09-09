@@ -1,10 +1,26 @@
 import React from "react";
-import { CardImage, CardInfo, CardInfoContainer, CardTitle, CardTitleContainer, CheckBox, Container, CVVContainer, CVVInfo, CVVTextInput, ExpiryDate, InfoIcon, MaskedAccNumber, Name, RecommendedCardContainer, RecommendedText, SaveCardContainer, SaveCardText } from "./card.styles";
-
+import { CardImage, CardInfoContainer, CardTitle, CardTitleContainer, CheckBox, Container, CVVContainer, CVVInfo, CVVTextInput, ExpiryDate, InfoIcon, MaskedAccNumber, Name, RecommendedCardContainer, RecommendedText, SaveCardContainer, SaveCardText } from "./card.styles";
+import { removeDefaultCard, updateDefaultCard } from '../../payments.slice';
+import { useDispatch, useSelector } from "react-redux";
 const Card = ({cardInfo}) => {
+    const { defaultCard } = useSelector((store) => store.payments);
+    const dispatch = useDispatch();
+    
+    function updateDefaultCardHandler() {
+        if (defaultCard.id === cardInfo.id) {
+            dispatch(removeDefaultCard());
+        } else {
+            dispatch(updateDefaultCard({card: cardInfo}));
+        }
+    }
+    
     return (
         <Container>
-            <input type="radio" checked={cardInfo.default} />
+            <input 
+                type="radio" 
+                checked={defaultCard.id === cardInfo.id} 
+                onChange={() => updateDefaultCardHandler()} 
+            />
             <CardInfoContainer>
                 <CardTitleContainer>
                     <CardTitle>{cardInfo.cardTitle}</CardTitle>

@@ -1,22 +1,20 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../api/api';
 
-const url = 'https://fakestoreapi.com';
-
 const initialState = {
-    selectedCard: {},
-    selectedAddress: {},
-    cards: [],
-    addresses: [],
-    isLoading: false
+    // selectedCard: {},
+    // selectedAddress: {},
+    // cards: [],
+    // addresses: [],
+    isLoading: false,
+    products: []
 }
 
 export const getProducts = createAsyncThunk(
     '/category/products', 
     async (productName, thunkAPI) => {
         try {
-            const fullUrl = url.concat(`/products/category/${productName}`);
-            const resp = await api(fullUrl);
+            const resp = await api(`/products/category/${productName}`);
             return resp.data;
         } catch(error) {
             return thunkAPI.rejectWithValue('something went wrong');
@@ -24,8 +22,8 @@ export const getProducts = createAsyncThunk(
     }
 );
 
-const checkOutSlice = createSlice({
-    name: 'checkout',
+const productsListSlice = createSlice({
+    name: 'productsList',
     initialState,
     reducers: {},
     extraReducers: {
@@ -43,4 +41,4 @@ const checkOutSlice = createSlice({
     },
 });
 
-export default checkOutSlice.reducer;
+export default productsListSlice.reducer;

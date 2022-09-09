@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { 
     Container,
     AddressContainer, 
@@ -7,11 +8,18 @@ import {
     BoldText,
     UpdateAddressButton
 } from "./address.styles";
+import { updateDefaultAddress, removeDefaultAddress } from '../addresses.slice';
 
 const Address = ({address}) => {
-
-    function updateDefaultAddress() {
+    const { defaultAddress } = useSelector((store) => store.addresses);
+    const dispatch = useDispatch();
     
+    function updateDefaultAddressHandler() {
+        if (defaultAddress.id === address.id) {
+            dispatch(removeDefaultAddress());
+        } else {
+            dispatch(updateDefaultAddress({address}));
+        }
     }
 
     return (
@@ -33,8 +41,8 @@ const Address = ({address}) => {
                 <label>
                     <input 
                         type="checkbox"
-                        checked={true}
-                        onChange={() => updateDefaultAddress()}
+                        checked={ defaultAddress.id === address.id }
+                        onChange={() => updateDefaultAddressHandler()}
                     />
                     Set as default
                 </label>

@@ -4,6 +4,7 @@ import {
     Container,
     UserDetailsContainer
 } from "./checkout.styles";
+import ShippingInfo from "./shipping-info/shipping-info.component";
 import UserDetails from "./user-details/user-details.component";
 
 const Checkout = () => {
@@ -12,7 +13,9 @@ const Checkout = () => {
             <UserDetailsContainer>
                 <UserDetails />
             </UserDetailsContainer>
-            <AddressContainer>wdwd</AddressContainer>
+            <AddressContainer>
+                <ShippingInfo />
+            </AddressContainer>
         </Container>
     );
 }

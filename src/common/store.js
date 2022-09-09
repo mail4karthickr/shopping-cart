@@ -5,6 +5,9 @@ import cartReducer from '../cart/cart.slice';
 import navigationReducer from '../navigation/navigation.slice';
 import appReducer from '../app/app.slice';
 import rootReducer from '../root/root.slice';
+import checkOutReducer from '../checkout/checkout.slice';
+import addressesReducer from '../checkout/user-details/addresses/addresses.slice';
+import paymentsReducer from '../checkout/user-details/payments/payments.slice.jsx';
 
 export const store = configureStore({
     reducer: {
@@ -13,6 +16,9 @@ export const store = configureStore({
         cart: cartReducer,
         navigation: navigationReducer,
         root: rootReducer,
-        app: appReducer
+        app: appReducer,
+        checkOut: checkOutReducer,
+        addresses: addressesReducer,
+        payments: paymentsReducer
     }
 });
