@@ -1,6 +1,6 @@
 import React from 'react';
 import { PageSpinnerContainer } from './page-spinner.styles';
-import Spinner from './spinner.component';
+import Spinner from '../spinner/spinner.component';
 
 const PageSpinner = ({message}) => {
     return (

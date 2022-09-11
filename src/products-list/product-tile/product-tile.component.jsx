@@ -9,10 +9,10 @@ import {
     ProductQuantityStepper
 } from './product-tile.styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../cart/cart.slice';
+import { addToCart } from '../../cart/cart.slice';
 import React, { useEffect, useState } from 'react';
 import IntUtils from 'common/utils/IntUtils';
-import QuantityStepper from '../cart-dropdown/quantity-stepper/quantity-stepper.component';
+import QuantityStepper from '../../cart/cart-dropdown/quantity-stepper/quantity-stepper.component';
  
 const ProductTile = ({product}) => {
     const { title, price, image, rating } = product;

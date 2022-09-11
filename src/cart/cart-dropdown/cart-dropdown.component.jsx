@@ -2,11 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import CartCheckOut from './cart-checkout/cart-checkout.component';
 import { 
-    CartDropdownContainer, 
-    DividerContainer, 
-    Divider, 
-    CartItemsContainer,
-    CartItemContainer,
+    CartDropdownContainer,
     NoCartItemsContainer,
     NoCartMessage1,
     NoCartMessage2

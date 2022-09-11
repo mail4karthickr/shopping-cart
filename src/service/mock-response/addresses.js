@@ -13,7 +13,7 @@ export const addresses = [
     },
     {
         id: 2,
-        fullname: 'Karthick',
+        fullname: 'Karthick1',
         mobnumber: '9840839368',
         pincode: '560100',
         flat:'L212, Godrej e city',

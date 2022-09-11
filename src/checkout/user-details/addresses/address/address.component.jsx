@@ -15,9 +15,7 @@ const Address = ({address}) => {
     const dispatch = useDispatch();
     
     function updateDefaultAddressHandler() {
-        if (defaultAddress.id === address.id) {
-            dispatch(removeDefaultAddress());
-        } else {
+        if (defaultAddress.id !== address.id) {
             dispatch(updateDefaultAddress({address}));
         }
     }
@@ -44,7 +42,7 @@ const Address = ({address}) => {
                         checked={ defaultAddress.id === address.id }
                         onChange={() => updateDefaultAddressHandler()}
                     />
-                    Set as default
+                    Shipping address
                 </label>
             </SetAsDefault>
         </Container>

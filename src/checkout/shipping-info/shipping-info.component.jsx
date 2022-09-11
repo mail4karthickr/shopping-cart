@@ -2,14 +2,20 @@ import PaymentResult from "checkout/payment-result/payment-result.component";
 import Modal from "common/components/modal/modal.component";
 import React from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Container, AddressContainer, Text, BoldText, MakePaymentButton } from './shipping-info.styles';
-
+import { clearCart } from '../../cart/cart.slice';
 const ShippingInfo = () => {
+    const dispatch = useDispatch();
     const { defaultAddress } = useSelector((store) => store.addresses);
     const { defaultCard } = useSelector((store) => store.payments);
     const { formattedAmount } = useSelector((store) => store.cart);
     const [makePayment, setMakePayment] = useState(false);
+
+    const makePaymentHandler = () => {
+        setMakePayment(true)
+        dispatch(clearCart());
+    }
 
     return (
         <Container>
@@ -36,7 +42,7 @@ const ShippingInfo = () => {
                 <Text>{defaultCard.expiry}</Text>
             </AddressContainer>
             <BoldText>{`Total - ${formattedAmount}`}</BoldText>
-            <MakePaymentButton onClick={() => setMakePayment(true)}>Make Payment</MakePaymentButton>
+            <MakePaymentButton onClick={() => makePaymentHandler()}>Make Payment</MakePaymentButton>
         </Container>
     );
 }

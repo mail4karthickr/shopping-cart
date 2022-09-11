@@ -1,6 +1,6 @@
 import Accordion from "../../../common/components/accordion/accordion.component";
 import React from "react";
-import CartItems from "../../../cart-dropdown/cart-items/cart-items.component";
+import CartItems from "../../../cart/cart-dropdown/cart-items/cart-items.component";
 import { Container, TotalAmountContainer } from "./shopping-cart.styles";
 import { useSelector } from "react-redux";
 

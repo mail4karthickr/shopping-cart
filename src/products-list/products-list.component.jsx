@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from './products-list.slice';
-import ProductTile from './product-tile.component';
+import ProductTile from './product-tile/product-tile.component';
 import { ProductsListContainer } from './products-list.styles';
 import React from 'react';
 

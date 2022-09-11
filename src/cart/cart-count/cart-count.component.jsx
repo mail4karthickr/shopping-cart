@@ -1,7 +1,7 @@
 import React from 'react';
 import { CartCountContainer, Bag, Circle } from './cart-count.styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsCartOpen } from './cart.slice';
+import { setIsCartOpen } from '../cart.slice';
 
 const CartCount = () => {
     const dispatch = useDispatch();

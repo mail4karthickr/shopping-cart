@@ -1,10 +1,10 @@
-import { Stepper } from '../../common/components/stepper/stepper.component';
+import { Stepper } from '../../../common/components/stepper/stepper.component';
 import React from 'react';
 import {
     Container,
     Amount
 } from './quantity-stepper.styles';
-import { decrease, increase } from '../../cart/cart.slice';
+import { decrease, increase } from '../../cart.slice';
 import { useDispatch } from 'react-redux';
 
 const QuantityStepper = ({cartItem}) => {
